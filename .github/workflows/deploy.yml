@@ -13,7 +13,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16' # Make sure this version matches the one you want to use based on your package.json
+        node-version: '20' # Make sure this version matches the one you want to use based on your package.json
     - name: Install dependencies
       run: npm install
     # Removed the "Build" step since you mentioned a Docker build, which typically includes compilation.
