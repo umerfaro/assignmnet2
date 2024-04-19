@@ -10,4 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Generate Release Notes
-      run: echo "Generating release notes for ${GITHUB_REF}"
+      uses: github-tools/github-release-notes@v0.17.1
+      with:
+        token: ${{ secrets.TOKEN_GITHUB }}
+        tag_name: ${{ github.ref }}
