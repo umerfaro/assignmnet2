@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Generate Release Notes
-      uses: github-tools/github-release-notes@latest
+      uses: github-tools/github-release-notes@main
 
 
       with:
