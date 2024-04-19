@@ -3,7 +3,7 @@ name: Code Review
 on:
   pull_request:
     branches:
-      - main2
+      - main
 
 jobs:
   review:
