@@ -1,15 +1,7 @@
-// eslint.config.mjs
-export default {
-  languageOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module',  // If you're using ES modules syntax
-    globals: {
-      // Define your globals here. For example:
-      // myGlobalVar: 'readonly'
-    },
-  },
-  rules: {
-    // Custom rules here
-  },
-  // Other configuration options...
-};
+import globals from "globals";
+
+
+export default [
+  {files: ["**/*.js"], languageOptions: {sourceType: "commonjs"}},
+  {languageOptions: { globals: globals.browser }},
+];
