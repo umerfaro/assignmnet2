@@ -9,10 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Generate Release Notes
-      uses: github-tools/github-release-notes@main
-
-
       with:
-        token: ${{ secrets.TOKEN_GITHUB }}
-        tag_name: ${{ github.ref }}
+        fetch-depth: 0  # Fetch all history for all tags and branches
+    - name: Generate Release Notes
+      run: |
+        # Get the latest two tags, assuming they are in version format "v*.*.*"
+        tags=$(git tag --sort=-v:refname | head -n 2)
+        # Split them into an array
+        IFS=' ' read -ra ADDR <<< "$tags"
+        # Fetch commit messages between tags
+        if [ ${#ADDR[@]} -eq 2 ]; then
+          git log --no-merges --format='%H %s' "${ADDR[1]}".."${ADDR[0]}"
+        else
+          echo "Not enough tags for comparison."
+        fi
+      shell: bash
