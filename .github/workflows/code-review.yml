@@ -10,7 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20' # Use the Node.js version that matches your project requirements
+
+    - name: Install dependencies
+      run: npm install
+
     - name: Run Linters
       run: npm run lint
+
     - name: Code Quality Analysis
       run: npm run quality-check
