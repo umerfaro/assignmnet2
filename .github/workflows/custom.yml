@@ -1,0 +1,13 @@
+name: Custom Workflow
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate Release Notes
+      run: echo "Generating release notes for ${GITHUB_REF}"

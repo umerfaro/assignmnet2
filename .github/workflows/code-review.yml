@@ -1,0 +1,16 @@
+name: Code Review
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Linters
+      run: npm run lint
+    - name: Code Quality Analysis
+      run: npm run quality-check
