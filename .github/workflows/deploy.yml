@@ -10,22 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '20' # Make sure this version matches the one you want to use based on your package.json
+
     - name: Install dependencies
       run: npm install
-    # Removed the "Build" step since you mentioned a Docker build, which typically includes compilation.
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-      with:
-        aws-region: us-east-1
+
     - name: Build and Push Docker image
       run: |
         docker build -t 070668544025.dkr.ecr.us-east-1.amazonaws.com/your-image-name .
         docker push 070668544025.dkr.ecr.us-east-1.amazonaws.com/your-image-name
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
