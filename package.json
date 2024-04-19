@@ -30,6 +30,7 @@
     "node": ">=12.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@types/node": "^20.12.7",
     "eslint": "^9.0.0",
     "globals": "^15.0.0"
