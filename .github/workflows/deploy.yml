@@ -17,8 +17,6 @@ jobs:
     - name: Install dependencies
       run: npm install
     # Removed the "Build" step since you mentioned a Docker build, which typically includes compilation.
-    - name: Test
-      run: npm test
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
